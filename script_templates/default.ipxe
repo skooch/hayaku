@@ -1,0 +1,47 @@
+#!ipxe
+
+# TODO: Add check for x86_64 and ARM64, right now only x86_64
+set arch x86_64
+
+# FYI: We don't verify any images, chainloading to ipxe-alpine disables verification anyway
+
+## Most template variables
+set alpine_mirror http://dl-cdn.alpinelinux.org/alpine
+# SSH key needs to be quoted or spaces will be interpreted as kernel cmdopts
+set ssh_key ssh_key="<%= SSH_KEY %>"
+set alpine_branch <%= ALPINE_BRANCH %>
+iseq ${alpine_branch} latest-stable || set alpine_version <%= ALPINE_VERSION %>
+iseq ${alpine_branch} edge || set alpine_version <%= ALPINE_VERSION %>
+
+## Kernel and other alpine variables
+# Not sure if setting this is important lmao
+set os Alpine Linux
+# Set console for dmesg
+set console console=tty0 ||
+# Force acpi support for stuff like poweroff, etc
+set acpi acpi=force ||
+# Kernel parameters
+set cmdline modules=loop,squashfs quiet nomodeset ||
+# Alpine Linux has two flavours, one with real drivers and one with just the virtual ones
+set flavor virt ||
+# If we have an SSH key, start sshd
+set start_sshd <%= SSH_KEY ? 'yes' : 'no' %>
+
+# If we're just using a tagged branch, do it that way, else we'll specify the version
+isset alpine_version || goto setup_alpine_branch
+set img-url ${alpine_mirror}/${alpine_branch}/releases/${arch}/netboot-${alpine_version}
+set repo-url ${alpine_mirror}/${alpine_branch}/main
+set modloop-url ${img-url}/modloop-${flavor}
+
+:setup_alpine_branch
+set img-url ${alpine_mirror}/${alpine_branch}/releases/${arch}/netboot
+set repo-url ${alpine_mirror}/${alpine_branch}/main
+set modloop-url ${img-url}/modloop-${flavor}
+
+imgfree
+kernel ${img-url}/vmlinuz-${flavor} ${cmdline} alpine_repo=${repo-url} modloop=${modloop-url} ${console} ${ssh_key}
+initrd ${img-url}/initramfs-${flavor}
+
+boot
+clear menu
+exit 0

@@ -1,0 +1,34 @@
+{
+  "name": "hayaku",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "packageManager": "pnpm@8.7.5",
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": "./out/index.mjs",
+  "main": "index.mjs",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "run": "node index.js",
+    "build-run": "tsc --build && node index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vultr/vultr-node": "^2.6.0",
+    "dotenv": "^16.3.1",
+    "eta": "^3.1.1",
+    "expand-tilde": "^2.0.2",
+    "randomstring": "^1.3.0"
+  },
+  "devDependencies": {
+    "@types/expand-tilde": "^2.0.0",
+    "@types/node": "^20.6.2",
+    "@types/randomstring": "^1.1.8",
+    "typescript": "^5.2.2"
+  }
+}
