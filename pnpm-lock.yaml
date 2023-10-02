@@ -8,6 +8,9 @@ dependencies:
   '@vultr/vultr-node':
     specifier: ^2.6.0
     version: 2.6.0
+  commander:
+    specifier: ^11.0.0
+    version: 11.0.0
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
@@ -17,6 +20,9 @@ dependencies:
   expand-tilde:
     specifier: ^2.0.2
     version: 2.0.2
+  object-scan:
+    specifier: ^19.0.2
+    version: 19.0.2
   randomstring:
     specifier: ^1.3.0
     version: 1.3.0
@@ -58,6 +64,11 @@ packages:
       - encoding
     dev: false
 
+  /commander@11.0.0:
+    resolution: {integrity: sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==}
+    engines: {node: '>=16'}
+    dev: false
+
   /dotenv@16.3.1:
     resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
     engines: {node: '>=12'}
@@ -92,6 +103,11 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
+    dev: false
+
+  /object-scan@19.0.2:
+    resolution: {integrity: sha512-JUW4+5uetNbi3aJgzXZo8ySZor73/lQ7WdTDeAnoH5/BvC+JyEWf1qA7fAUFjWCGuiyngGrA2tiJ1gKKjou1UQ==}
+    engines: {node: '>= 16'}
     dev: false
 
   /parse-passwd@1.0.0:

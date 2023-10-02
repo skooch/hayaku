@@ -1,6 +1,6 @@
 # hayaku
 
-### Develop stuff using docker on Vultr extremely quickly
+### Develop stuff using Docker on Vultr extremely quickly
 
 **This tool is unfinished and not ready for public consumption, here's whats left to do:**
 
